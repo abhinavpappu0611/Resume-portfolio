@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 const Contact = ({ personalInfo }) => {
   const [formData, setFormData] = useState({
     name: '', email: '', subject: '', message: ''
@@ -16,15 +17,32 @@ const Contact = ({ personalInfo }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitted(true);
+
+    try {
+      // Use Formspree - replace YOUR_FORM_ID with actual Formspree form ID
+      const response = await fetch('https://formspree.io/f/abhinavpappu2017@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setSubmitted(false), 5000);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
       setIsSubmitting(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      
-      setTimeout(() => setSubmitted(false), 3000);
-    }, 1000);
+    }
   };
 
   return (
@@ -52,9 +70,23 @@ const Contact = ({ personalInfo }) => {
               </p>
             </div>
 
+            {/* Direct Email Button */}
+            <div className="bg-gradient-to-r from-emerald-500 bg-opacity-20 to-teal-500 bg-opacity-20 border border-emerald-400 border-opacity-50 rounded-lg p-6">
+              <h4 className="text-xl font-semibold text-white mb-4">📧 Email Me Directly</h4>
+              <a 
+                href="mailto:abhinavpappu2017@gmail.com?subject=Portfolio Inquiry&body=Hi Venkata, I saw your portfolio and would like to discuss..."
+                className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-full transition-colors inline-flex items-center"
+              >
+                Send Email Now
+              </a>
+              <p className="text-gray-300 text-sm mt-2">
+                This opens your email client directly - guaranteed delivery!
+              </p>
+            </div>
+
             {/* Contact Methods */}
             <div className="space-y-4">
-              <div className="bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-6 hover:border-emerald-400 hover:border-opacity-50 transition-all duration-300">
+              <div className="bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-emerald-500 bg-opacity-20 rounded-lg flex items-center justify-center">
                     <span className="text-emerald-400 text-xl">📧</span>
@@ -68,7 +100,7 @@ const Contact = ({ personalInfo }) => {
                 </div>
               </div>
 
-              <div className="bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-6 hover:border-emerald-400 hover:border-opacity-50 transition-all duration-300">
+              <div className="bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-emerald-500 bg-opacity-20 rounded-lg flex items-center justify-center">
                     <span className="text-emerald-400 text-xl">💼</span>
@@ -81,29 +113,6 @@ const Contact = ({ personalInfo }) => {
                   </div>
                 </div>
               </div>
-
-              <div className="bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-6 hover:border-emerald-400 hover:border-opacity-50 transition-all duration-300">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-emerald-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                    <span className="text-emerald-400 text-xl">📍</span>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-white">Location</h4>
-                    <p className="text-gray-400">{personalInfo.location}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Status */}
-            <div className="bg-gradient-to-r from-emerald-500 bg-opacity-10 to-teal-500 bg-opacity-10 border border-emerald-400 border-opacity-30 rounded-lg p-6">
-              <div className="flex items-center gap-4">
-                <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
-                <div>
-                  <h4 className="text-lg font-semibold text-white">Available for Opportunities</h4>
-                  <p className="text-gray-300">Open to AI/ML roles and exciting projects</p>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -114,8 +123,8 @@ const Contact = ({ personalInfo }) => {
             {submitted ? (
               <div className="text-center py-8">
                 <div className="text-emerald-400 text-6xl mb-4">✓</div>
-                <h4 className="text-xl font-semibold text-white mb-2">Message Sent!</h4>
-                <p className="text-gray-400">Thank you for reaching out. I'll get back to you soon!</p>
+                <h4 className="text-xl font-semibold text-white mb-2">Message Sent Successfully!</h4>
+                <p className="text-gray-400">Thank you! Your message has been sent to abhinavpappu2017@gmail.com</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -179,6 +188,10 @@ const Contact = ({ personalInfo }) => {
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
+
+                <div className="text-center text-sm text-gray-400">
+                  <p>Messages will be delivered to <span className="text-emerald-400">abhinavpappu2017@gmail.com</span></p>
+                </div>
               </form>
             )}
           </div>
