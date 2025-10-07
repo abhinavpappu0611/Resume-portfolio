@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/netflix-ai-portfolio/static/css/main.37361a19.css",
+    "main.js": "/netflix-ai-portfolio/static/js/main.f16f222a.js",
+    "index.html": "/netflix-ai-portfolio/index.html",
+    "main.37361a19.css.map": "/netflix-ai-portfolio/static/css/main.37361a19.css.map",
+    "main.f16f222a.js.map": "/netflix-ai-portfolio/static/js/main.f16f222a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.37361a19.css",
+    "static/js/main.f16f222a.js"
+  ]
+}
