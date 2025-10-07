@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/netflix-ai-portfolio/static/css/main.37361a19.css",
-    "main.js": "/netflix-ai-portfolio/static/js/main.f16f222a.js",
-    "index.html": "/netflix-ai-portfolio/index.html",
-    "main.37361a19.css.map": "/netflix-ai-portfolio/static/css/main.37361a19.css.map",
-    "main.f16f222a.js.map": "/netflix-ai-portfolio/static/js/main.f16f222a.js.map"
+    "main.css": "/Resume-portfolio/static/css/main.1af1cd45.css",
+    "main.js": "/Resume-portfolio/static/js/main.b2a72e7c.js",
+    "index.html": "/Resume-portfolio/index.html",
+    "main.1af1cd45.css.map": "/Resume-portfolio/static/css/main.1af1cd45.css.map",
+    "main.b2a72e7c.js.map": "/Resume-portfolio/static/js/main.b2a72e7c.js.map"
   },
   "entrypoints": [
-    "static/css/main.37361a19.css",
-    "static/js/main.f16f222a.js"
+    "static/css/main.1af1cd45.css",
+    "static/js/main.b2a72e7c.js"
   ]
 }
